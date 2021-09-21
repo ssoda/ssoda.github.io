@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: recursive  # Fetch Hugo themes (true OR recursive)
+          #submodules: recursive  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
@@ -20,6 +20,9 @@ jobs:
         with:
           hugo-version: '0.87.0'
           extended: true
+
+      - name: Checkout Submodules
+        run: git submodule add https://github.com/jrutheiser/hugo-lithium-theme.git themes/lithium
 
       - name: Debug
         run: pwd && ls -al
