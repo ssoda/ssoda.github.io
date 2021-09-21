@@ -21,6 +21,9 @@ jobs:
           hugo-version: '0.87.0'
           extended: true
 
+      - name: Debug
+        run: pwd && ls -al
+
       - name: Build
         run: hugo --minify
 
