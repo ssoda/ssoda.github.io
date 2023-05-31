@@ -1,7 +1,0 @@
-baseURL = 'https://ssoda.github.io/'
-languageCode = 'en-us'
-title = 'ssoda'
-theme = 'PaperMod'
-[module]
-[[module.imports]]
-    path = 'PaperMod'
