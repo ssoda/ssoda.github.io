@@ -1,7 +1,7 @@
 ---
 title: "認識一下 GitLab CI"
 date: 2023-10-03T23:29:49+08:00
-draft: true
+# draft: true
 tags: ["note"]
 ---
 
