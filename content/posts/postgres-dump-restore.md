@@ -52,19 +52,30 @@ tags: ["note"]
 接下來一切都順利多了，
 
 以下範例為：  
-在容器內操作，  
-從 db_host_1 導出 schema_a ，並直接匯入至 db_host_2 的 schema_a，  
-user 皆為 postgres。  
+在容器內操作，將以下資料庫之 schema 導出
+```
+host: db_host_1
+user: postgres
+database: db_a
+schema: schema_a
+```  
+匯入至
+```
+host: db_host_2
+user: postgres
+database: db_a
+schema: schema_a
+```
 
 
 (1)  
-`pg_dump -h db_host_1 -U postgres -n schema_a bak.dump`
+`pg_dump -Fc -h db_host_1 -p 5433 -U postgres -d db_a -n schema_a > bak.dump`
 
 (2)  
 在 db_host_2 建立新的空白 shema_2  -> 後記：這步也許可以再調整甚至省略   
 
 (3)  
-`pg_restore -Fc -h db_host_2 -U postgres -n schema_a < bak.dump`
+`pg_restore -h db_host_2 -p 5433 -U postgres -d db_a -n schema_a bak.dump`
 
 
 本來是導出 sql 但 pg_restore 讀檔沒成功，  
