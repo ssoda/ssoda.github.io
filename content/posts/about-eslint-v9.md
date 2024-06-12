@@ -1,7 +1,7 @@
 ---
 title: "關於 ESLint v9"
 date: 2024-06-11T19:23:04+08:00
-draft: true
+draft: false
 tags: ["note", "javascript", "typescript", "eslint"]
 ---
 
@@ -61,7 +61,35 @@ npm install --save-dev eslint @eslint/js @types/eslint__js typescript typescript
 
 最終設定檔會類似以下：
 ```
-...
+// @ts-check
+
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import vueParser from 'vue-eslint-parser';
+
+export default tseslint.config(
+    eslint.configs.recommended,
+    ...tseslint.configs.recommended,
+    {
+        languageOptions: {
+            parser: vueParser,
+            parserOptions: {
+                parser: tseslint.parser,
+                sourceType: 'module',
+            },
+        },
+    },
+    {
+        ignores: ['node_modules/', 'dist/'],
+    }
+);
 ```
 
 ## 小整理
+
+最後總共安裝了這些：  
+`eslint` -> 本體  
+`@eslint/js` -> 提供建議的規則 eslint.configs.recommended  
+`typescript-eslint` -> typescript 版  
+`@types/eslint__js` -> 提供建議的規則 for typescript  
+`vue-eslint-parser` -> 讓 ESLint 讀得懂 vue  
